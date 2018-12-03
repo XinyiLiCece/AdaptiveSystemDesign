@@ -2,76 +2,119 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './Questionary.css';
 import RestuantBlock from '../../component/resturantBlock/resturantBlock';
-import { Row, Col, Slider } from 'antd';
-import Button from 'antd/lib/button';
-import 'antd/lib/button/style';
+import Modal from '../../component/modal/modal';
+import RatingBlock from '../../component/ratingBlock/ratingBlock'
+import { Row, Col, Slider, Timeline } from 'antd';
+import 'antd/dist/antd.css';
+//import 'antd/lib/slider/style/css';
+
 
 class Questionary extends Component {
-    gutters = {};
-
-    colCounts = {};
-  
-    constructor() {
-      super();
-      this.state = {
-        gutterKey: 1,
-        colCountKey: 2,
-      };
-      [8, 16, 24, 32, 40, 48].forEach((value, i) => { this.gutters[i] = value; });
-      [2, 3, 4, 6, 8, 12].forEach((value, i) => { this.colCounts[i] = value; });
-    }
-  
-    onGutterChange = (gutterKey) => {
-      this.setState({ gutterKey });
-    }
-  
-    onColCountChange = (colCountKey) => {
-      this.setState({ colCountKey });
-    }
-    render() {
-        const { gutterKey, colCountKey } = this.state;
-        const cols = [];
-        const colCount = this.colCounts[colCountKey];
-        let colCode = '';
-        for (let i = 0; i < colCount; i++) {
-          cols.push(
-            <Col key={i.toString()} span={24 / colCount}>
-              <div>Column</div>
-            </Col>
-          );
-          colCode += `  <Col span={${24 / colCount}} />\n`;
+    constructor(props) {
+        super(props)
+        this.state = {
+            visible: false
         }
-        return (
-          <div>
-            <div style={{ marginBottom: 16 }}>
-              <span style={{ marginRight: 6 }}>Gutter (px): </span>
-              <div style={{ width: '50%' }}>
-                <Slider
-                  min={0}
-                  max={Object.keys(this.gutters).length - 1}
-                  value={gutterKey}
-                  onChange={this.onGutterChange}
-                  marks={this.gutters}
-                  step={null}
-                />
-              </div>
-              <span style={{ marginRight: 6 }}>Column Count:</span>
-              <div style={{ width: '50%' }}>
-                <Slider
-                  min={0}
-                  max={Object.keys(this.colCounts).length - 1}
-                  value={colCountKey}
-                  onChange={this.onColCountChange}
-                  marks={this.colCounts}
-                  step={null}
-                />
-              </div>
-            </div>
-            <Row gutter={this.gutters[gutterKey]}>{cols}</Row>
-            <pre>{`<Row gutter={${this.gutters[gutterKey]}}>\n${colCode}</Row>`}</pre>
-          </div>
-        );
-      }
-}
-export default Questionary;
+    }
+    handleClick = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+    // renderBlock() {
+    //     return (
+    //         <RatingBlock
+    //             name="Lily"
+    //             genre="Chinese"
+    //             url="http"
+    //         />
+    //     );
+    // }
 
+
+    render() {
+        const datas = [
+            {
+                name: 'Bangkok',
+                genre: 'Thai',
+                url: 'http1',
+                title: 'Rate',
+            },
+            {
+                name: 'Pastoli Pizza',
+                genre: 'Italian',
+                url: 'http2',
+                title: 'Rate',
+            },
+            {
+                name: 'Bird On The Run',
+                genre: 'Chicked Shop',
+                url: 'http3',
+                title: 'Rate',
+            },
+            {
+                name: 'El Mecs',
+                genre: 'Mexican',
+                url: 'http4',
+                title: 'Rate',
+            },
+            {
+                name: 'Hidder Harbor',
+                genre: 'Hawaiian',
+                url: 'http5',
+                title: 'Rate',
+            },
+            {
+                name: 'Independent Brewing Company',
+                genre: 'Pubs',
+                url: 'http6',
+                title: 'Rate',
+            },
+            {
+                name: 'Aladdin Eatery',
+                genre: 'Middle Eastern',
+                url: 'http7',
+                title: 'Rate',
+            },
+            {
+                name: 'Ramen Bar',
+                genre: 'Ramen',
+                url: 'http8',
+                title: 'Rate',
+            },
+            {
+                name: 'Ramen Bar',
+                genre: 'Ramen',
+                url: 'http9',
+                title: 'Rate',
+            },
+            {
+                name: 'Green Pepper',
+                genre: 'Korean',
+                url: 'http10',
+                title: 'Rate',
+            },
+        ];
+        const colItems = datas.map((data) =>
+            <Col className = "rating-block-container" span={8}>
+                <RatingBlock 
+                    name={data.name}
+                    genre={data.genre}
+                    url={data.url}
+                    title={data.title}></RatingBlock>
+            </Col>
+        );
+        return (
+            <div>
+                <Row>{colItems}</Row>
+                    {/* <Modal 
+                      title = 'Rate Me'
+                      visible = {this.state.visible}
+                      onClick={() => this.handleClick()}
+                      onCancel = {() => this.setState({visible: false})}
+                    ></Modal> */} 
+
+            </div>)
+    };
+};
+export default Questionary;

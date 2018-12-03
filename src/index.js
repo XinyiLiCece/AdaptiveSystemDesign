@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './page/Home/Home';
+import { Row, Col, Slider } from 'antd';
 // import * as serviceWorker from './serviceWorker';
 
 // ReactDOM.render(<div />, document.getElementById('root'));
