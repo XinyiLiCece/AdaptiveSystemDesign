@@ -10,7 +10,7 @@ import Input from '../../component/input/Input'
 import RegistrationForm from '../SignUp/signUp'
 import SignUpPage from '../SignUpPage/SignUpPage'
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-
+import Welcome from '../Welcome/Welcome'
 class Home extends Component {
     Recommend= () => {
         return (
@@ -21,9 +21,10 @@ class Home extends Component {
     }
     render() {
         return (
-            // <Router>
+            <Router>
                 <div>
-                    <SignUpPage></SignUpPage> 
+                    <Welcome></Welcome>
+                    {/* <SignUpPage></SignUpPage>  */}
                     {/* <Route path = '/Recom' component = {Recommend} /> */}
                 {/* <RestuantBlock name = "Lily"
                     rating = "3.4"
@@ -38,7 +39,7 @@ class Home extends Component {
              <SignUpPage></SignUpPage> 
               {/* <Route path="/home/recommend" component={Recommend} /> */}
              </div>
-            // </Router>
+            </Router>
         )
     }
 }
