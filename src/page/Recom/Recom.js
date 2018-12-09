@@ -3,10 +3,20 @@ import ReactDOM from 'react-dom';
 import './Recom.css';
 import { List, Icon } from 'antd';
 import { Rate } from 'antd';
+import ModalForm from '../../component/ModalForm/ModalForm';
 
 class Recommend extends Component {
-
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            visible: false,
+        }
+    }
+ handleClick = () => {
+        this.setState({
+            visible: true,
+        });
+    }
     render() {
         const datas = [
             {
@@ -128,6 +138,13 @@ class Recommend extends Component {
                             />
                             {item.content}
                             <div><Rate disabled defaultValue={item.rating} /></div>
+                            {/* <Modal 
+                      title = 'Rate Me'
+                      visible = {this.state.visible}
+                      onClick={() => this.handleClick()}
+                      onCancel = {() => this.setState({visible: false})}
+                    ></Modal>  */}
+                    <ModalForm></ModalForm>
                         </List.Item>
                     )}
                 />,
@@ -136,3 +153,5 @@ class Recommend extends Component {
     };
 };
 export default Recommend;
+
+ 

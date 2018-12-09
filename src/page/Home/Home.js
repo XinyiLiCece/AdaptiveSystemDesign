@@ -11,37 +11,64 @@ import RegistrationForm from '../SignUp/signUp'
 import SignUpPage from '../SignUpPage/SignUpPage'
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import Welcome from '../Welcome/Welcome'
+
+
+function Register(props) {
+    return (
+        <div>
+            <Welcome onClick = {this.props.handleFinishRegister()}/>
+        </div>
+    )
+}
+function Search() {
+    return (
+        <div>
+           hi
+        </div>
+    )
+}
 class Home extends Component {
-    Recommend= () => {
-        return (
-            <div>
-                <Recommend></Recommend>
-            </div>
-        )
-    }
+    
+handleFinishRegister = () => {
+    this.props.history.push('/recom');
+}
     render() {
         return (
             <Router>
+
                 <div>
-                    <Welcome></Welcome>
+                    <ul>
+                        <li>
+                            <Link to="/regis">Register</Link>
+                        </li>
+                        <li>
+                            <Link to="/recom">Recommend</Link>
+                        </li>
+                        <li>
+                            <Link to="/search">Search</Link>
+                        </li>
+                    </ul>
+                <Route path = '/regis' component = {Welcome} /> 
+            <Route path = '/Recom' component = {Recommend} /> 
+                <Route path = '/search' component = {Search} /> 
+                    {/* <Welcome></Welcome> */}
                     {/* <SignUpPage></SignUpPage>  */}
                     {/* <Route path = '/Recom' component = {Recommend} /> */}
-                {/* <RestuantBlock name = "Lily"
+                    {/* <RestuantBlock name = "Lily"
                     rating = "3.4"
                      genre = "Chinese"
                      url = "http">
              </RestuantBlock>
             <Questionary></Questionary> */}
-             {/* <Recommend></Recommend> */}
-             {/* <WrappedSignUp></WrappedSignUp>
+                    {/* <Recommend></Recommend> */}
+                    {/* <WrappedSignUp></WrappedSignUp>
              <Input></Input>
              <RegistrationForm></RegistrationForm>
              <SignUpPage></SignUpPage> 
               {/* <Route path="/home/recommend" component={Recommend} /> */}
-             </div>
+                </div>
             </Router>
         )
     }
 }
 export default Home;
-

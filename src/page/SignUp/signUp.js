@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './signUp.css';
 import Questionary from '../Questionary/Questionary';
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Link, withRouter } from "react-router-dom";
 
 // import Input from '../../component/input/Input';
 import 'antd/dist/antd.css';
@@ -20,16 +20,33 @@ class RegistrationForm extends React.Component {
         // filled: false
     };
 
-    handleSubmit = (e) => {
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.form.validateFieldsAndScroll((err, values) => {
+    //         if (!err) {
+    //             console.log('Received values of form: ', values)
+    //             // .then(() => this.setState(() => ({
+    //             //     filled: true
+    //             //   })));
+    //         }
+    //     });
+    // }
+
+    handleSubmit = async (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values)
-                // .then(() => this.setState(() => ({
-                //     filled: true
-                //   })));
+                if (this.handleFormSubmit(values)) {
+                    console.log("submit");
+                    this.props.history.push('/question');
+                }
             }
         });
+    }
+
+    handleFormSubmit = async (values) => {
+        console.log('Received values of form: ', values)
+        return true;
     }
 
     handleConfirmBlur = (e) => {
@@ -178,7 +195,7 @@ class RegistrationForm extends React.Component {
                 </FormItem>
                 <FormItem {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
-                        <Link to="/question">About</Link>
+                        {/* <Link to="/question">About</Link> */}
                     </Button>
                 </FormItem>
             </Form>
@@ -187,4 +204,4 @@ class RegistrationForm extends React.Component {
     };
 }
 const WrappedSignUp = Form.create()(RegistrationForm)
-export default WrappedSignUp;
+export default withRouter(WrappedSignUp);

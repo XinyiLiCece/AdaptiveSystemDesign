@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './modal.css';
 import { Modal, Button } from 'antd';
+import { Rate } from 'antd';
 
 
 class Modal_ extends React.Component {
@@ -9,6 +10,7 @@ class Modal_ extends React.Component {
         super(props)
         this.state = {
             visible: this.props.visible,
+            value: 0
         }
     }
     state = {
@@ -22,7 +24,9 @@ class Modal_ extends React.Component {
     //       visible: true,
     //     });
     //   }
-    
+    handleChange = (value) => {
+      this.setState({ value: value });
+  }
       handleOk = () => {
         this.setState({
           ModalText: 'The modal will be closed after two seconds',
@@ -61,6 +65,7 @@ class Modal_ extends React.Component {
           onCancel={this.props.onCancel}
         >
           <p>{ModalText}</p>
+          <Rate onChange={this.handleChange} value={this.state.value} />
         </Modal>
       </div>
     );

@@ -20,11 +20,9 @@ class Questionary extends Component {
         }
     }
 
-    handleSubmit = () => {
-        this.setState({
-            filled: true
-        })
-    }
+    // handleSubmit = () => {
+        
+    // }
     // handleClick = () => {
     //     this.setState({
     //         visible: true,
@@ -42,9 +40,9 @@ class Questionary extends Component {
 
 
     render() {
-        if (this.state.filled == true) {
-            return <Redirect to='../Home/Home'/>
-        }
+        // if (this.state.filled == true) {
+        //     return <Redirect to='../Home/Home'/>
+        // }
         const datas = [
             {
                 name: 'Deluca\'s Diner',
@@ -156,6 +154,7 @@ class Questionary extends Component {
                     title={data.title}></RatingBlock>
             </Col>
         );
+        console.log(this.props)
         return (
             <div>
                 <div className = "ques-title">Have You Ever Been To Any Of These? Rate them before you start, this will help us know you better.</div>
@@ -166,7 +165,9 @@ class Questionary extends Component {
                       onClick={() => this.handleClick()}
                       onCancel = {() => this.setState({visible: false})}
                     ></Modal> */} 
-                   <Button type="primary" onClick = {() => this.handleSubmit}>
+                   {/* <Button type="primary" onClick = {() => this.handleSubmit}> */}
+                    {/* <Button type="primary" onClick = {() => this.props.onClick}> */}
+                    <Button type="primary" onClick = {() => this.props.onClick}>
                     </Button>
             </div>)
     };

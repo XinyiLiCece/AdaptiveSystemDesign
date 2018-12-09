@@ -6,6 +6,7 @@ import Questionary from '../Questionary/Questionary';
 
 
 function SignUpPage() {
+  // onClick = this.onClick;
   return (
     <Router>
       <div>
@@ -21,7 +22,15 @@ function SignUpPage() {
         <hr />
 
         <Route path="/signup" component={SignUp} />
-        <Route path="/question" component={Question} />
+        {/* <Route path="/question" component={Question} /> */}
+        <Route path="/question" component={() => {
+          return (
+            <div>
+              {/* <Questionary onClick = {onClick}></Questionary> */}
+              <Questionary></Questionary>
+            </div>
+          );
+        }} />
       </div>
     </Router>
   );
@@ -35,13 +44,13 @@ function SignUp() {
   );
 }
 
-function Question() {
-  return (
-    <div>
-      <Questionary></Questionary>
-    </div>
-  );
-}
+// function Question(props) {
+//   return (
+//     <div>
+//       <Questionary onClick = {props.onClick}></Questionary>
+//     </div>
+//   );
+// }
 
 
 export default SignUpPage;

@@ -29,20 +29,20 @@ class Welcome extends React.Component {
         super(props);
         this.state = { disabled: false };
     }
-    handleClick = () => {
-        this.setState({
-            disabled: true
-        })
-    }
+    // handleClick = () => {
+    //     this.setState({
+    //         disabled: true
+    //     })
+    // }
     render() {
         const { match, location, history } = this.props;
         return (
             <Router>
                 <div>
                     <h1>Welcome to the resturant recommender!</h1>
-                    <SignUpBtn disabled={this.state.disabled} onClick={() => this.handleClick()}>Sign Up
+                    <SignUpBtn disabled={this.state.disabled} onClick={() => this.props.onClick}>Sign Up
                 </SignUpBtn>
-                    <Button disabled={this.state.disabled} onClick={() => this.handleClick()}>Have account? Sign In Here</Button>
+                    <Button disabled={this.state.disabled}>Have account? Sign In Here</Button>
                     {/* <Route path="/signup" component={SignUpPage} /> */}
                 </div>
             </Router>
