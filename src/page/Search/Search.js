@@ -23,6 +23,7 @@ class SearchList extends Component {
                 rating: data.stars
             })      
         });
+    
         return (
             <div>
                 <List
@@ -69,22 +70,22 @@ class Recommend extends Component {
         super(props)
         this.state = {
             visible: false,
-            userId: "test",
+            // userId: "Yimeng",
             data: [],
             value: '',
             isSearched: false
         }
     }
-    handleSearch = (value) => {
-        console.log(value)
-        this.submitSearch(value)
+    handleSearch = (value, userId) => {
+        // console.log(value)
+        this.submitSearch(value, userId)
     }
 
-    submitSearch = async(value) => {
-        const rate = this.getSearch(value)
+    submitSearch = async(value, userId) => {
+        const rate = this.getSearch(value, userId)
         .then(response => {
             if (response.data) {
-                console.log(response.data.result)
+                // console.log(response.data.result)
                 this.setState({
                     isSearched: true,
                     data: response.data.result
@@ -94,9 +95,9 @@ class Recommend extends Component {
     }
 
 
-    getSearch = (value) => {
+    getSearch = (value, userId) => {
         try {                 
-            return Axios.get("http://localhost:5000/adaptivesearch/" + value)
+            return Axios.get("http://localhost:5000/adaptivesearch/" + value + "/" + "Yimeng")
         } catch (error) {
             console.log(error)
         }
