@@ -4,26 +4,45 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 import 'antd/dist/antd.css';
 import RegistrationForm from '../SignUp/signUp';
 import { Button } from 'antd';
+import SignUpPage from '../SignUpPage/SignUpPage';
+import { withRouter } from 'react-router-dom'
 
-function SignUp() {
-    return (
-      <div>
-        <RegistrationForm></RegistrationForm>
-      </div>
-    );
-  }
+
+  const SignUpBtn = withRouter(({ history }) => (
+    <div>
+    <Button
+      type='button'
+      onClick={() => {
+          console.log(history) 
+          history.push('/signup') }
+        }
+    >
+      Click Me To Sign Up!
+    </Button>
+    <Route path="/signup" component={SignUpPage} />
+    </div>
+  ))
 
 class Welcome extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {disabled: false};
+      }
+    handleClick = () => {
+        this.setState({
+            disabled: true
+        })
+    }
     render() {
+        const { match, location, history } = this.props;
         return (
             <Router>
             <div>
                 <h1>Welcome to the resturant recommender!</h1>
-                <Button>Sign Up
-                <Link to={{pathname: '/signup'}}></Link>
-                </Button>
-                <Button>Sign In</Button>
-                <Route path="/signup" component={SignUp} />   
+                <SignUpBtn disabled = {this.state.disabled} onClick = {() => this.handleClick()}>Sign Up
+                </SignUpBtn>
+                <Button disabled = {this.state.disabled} onClick = {() => this.handleClick()}>Have account? Sign In Here</Button>
+                {/* <Route path="/signup" component={SignUpPage} /> */}
             </div>
             </Router>
         )

@@ -20,7 +20,7 @@ function SignUpPage() {
 
         <hr />
 
-        <Route exact path="/signup" component={SignUp} />
+        <Route path="/signup" component={SignUp} />
         <Route path="/question" component={Question} />
       </div>
     </Router>
