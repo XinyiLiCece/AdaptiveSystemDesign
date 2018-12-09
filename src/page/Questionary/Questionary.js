@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import './Questionary.css';
 import RestuantBlock from '../../component/resturantBlock/resturantBlock';
 import Modal from '../../component/modal/modal';
@@ -7,20 +8,28 @@ import RatingBlock from '../../component/ratingBlock/ratingBlock'
 import { Row, Col, Slider, Timeline } from 'antd';
 import 'antd/dist/antd.css';
 //import 'antd/lib/slider/style/css';
+import { Button } from 'antd';
 
 
 class Questionary extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            visible: false
+            visible: false,
+            filled: false
         }
     }
-    handleClick = () => {
+
+    handleSubmit = () => {
         this.setState({
-            visible: true,
-        });
+            filled: true
+        })
     }
+    // handleClick = () => {
+    //     this.setState({
+    //         visible: true,
+    //     });
+    // }
     // renderBlock() {
     //     return (
     //         <RatingBlock
@@ -33,6 +42,9 @@ class Questionary extends Component {
 
 
     render() {
+        if (this.state.filled == true) {
+            return <Redirect to='../Home/Home'/>
+        }
         const datas = [
             {
                 name: 'Bangkok',
@@ -106,6 +118,7 @@ class Questionary extends Component {
         );
         return (
             <div>
+                <div className = "ques-title">Have You Ever Been To Any Of These? Rate them before you start, this will help us know you better.</div>
                 <Row>{colItems}</Row>
                     {/* <Modal 
                       title = 'Rate Me'
@@ -113,7 +126,8 @@ class Questionary extends Component {
                       onClick={() => this.handleClick()}
                       onCancel = {() => this.setState({visible: false})}
                     ></Modal> */} 
-
+                   <Button type="primary" onClick = {() => this.handleSubmit}>
+                    </Button>
             </div>)
     };
 };

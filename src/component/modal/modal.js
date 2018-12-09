@@ -36,12 +36,12 @@ class Modal_ extends React.Component {
         }, 2000);
       }
     
-      handleCancel = () => {
-        console.log('Clicked cancel button');
-        this.setState({
-          visible: false,
-        });
-      }
+    //   handleCancel = () => {
+    //     console.log('Clicked cancel button');
+    //     this.setState({
+    //       visible: false,
+    //     });
+    //   }
     
     render() {
         // const { visible, confirmLoading, ModalText } = this.state;
