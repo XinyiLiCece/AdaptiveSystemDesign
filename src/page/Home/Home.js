@@ -11,6 +11,7 @@ import RegistrationForm from '../SignUp/signUp'
 import SignUpPage from '../SignUpPage/SignUpPage'
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import Welcome from '../Welcome/Welcome'
+import Search from '../Search/Search'
 
 
 function Register(props) {
@@ -20,13 +21,13 @@ function Register(props) {
         </div>
     )
 }
-function Search() {
-    return (
-        <div>
-           hi
-        </div>
-    )
-}
+// function Search() {
+//     return (
+//         <div>
+//            hi
+//         </div>
+//     )
+// }
 class Home extends Component {
     
 handleFinishRegister = () => {
