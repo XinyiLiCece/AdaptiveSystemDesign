@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect, withRouter } from "react-router-dom";
 import './Questionary.css';
 import RestuantBlock from '../../component/resturantBlock/resturantBlock';
 import Modal from '../../component/modal/modal';
@@ -37,7 +37,9 @@ class Questionary extends Component {
     //         />
     //     );
     // }
-
+    handleSubmit = () => {
+        this.props.history.push('/recom');
+    }
 
     render() {
         // if (this.state.filled == true) {
@@ -167,9 +169,10 @@ class Questionary extends Component {
                     ></Modal> */} 
                    {/* <Button type="primary" onClick = {() => this.handleSubmit}> */}
                     {/* <Button type="primary" onClick = {() => this.props.onClick}> */}
-                    <Button type="primary" onClick = {() => this.props.onClick}>
+                    <Button type="primary" onClick = {() => {this.handleSubmit()}}>
+                    {/* <Link to="/recom">Finish</Link> */}
                     </Button>
             </div>)
     };
 };
-export default Questionary;
+export default withRouter(Questionary);

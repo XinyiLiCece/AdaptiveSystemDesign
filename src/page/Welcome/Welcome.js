@@ -40,7 +40,7 @@ class Welcome extends React.Component {
             <Router>
                 <div>
                     <h1>Welcome to the resturant recommender!</h1>
-                    <SignUpBtn disabled={this.state.disabled} onClick={() => this.props.onClick}>Sign Up
+                    <SignUpBtn disabled={this.state.disabled3}>Sign Up
                 </SignUpBtn>
                     <Button disabled={this.state.disabled}>Have account? Sign In Here</Button>
                     {/* <Route path="/signup" component={SignUpPage} /> */}
