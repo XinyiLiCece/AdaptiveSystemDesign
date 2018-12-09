@@ -162,11 +162,11 @@ class Questionary extends Component {
                 <RatingBlock 
                     name={data.name}
                     genre={data.genre}
-                    url={data.url}
+                    id = {data.id}
                     title={data.title}></RatingBlock>
             </Col>
         );
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div>
                 <div className = "ques-title">Have You Ever Been To Any Of These? Rate them before you start, this will help us know you better.</div>

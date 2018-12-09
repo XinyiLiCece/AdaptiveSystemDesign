@@ -6,20 +6,29 @@ import axios from 'axios';
 
 
 class RatingBlock extends React.Component {
-    state = {
-        value: 0,
+    constructor(props) {
+        super(props)
+        this.state = {
+            value: 0,
+            userId: "test",
+            businessId: this.props.id
+        }
     }
-    handleChange = (value, props) => {
+    // state = {
+    //     value: 0,
+    // }
+    handleChange = (value) => {
         this.setState({ value });
-        this.handleRateSubmit(value)
+        this.handleRateSubmit(this.state.userId, this.state.businessId, value)
     }
-    handleClick(url) {
-        console.log("go to resturant");
-        // open resturant page
-    }
+    // handleClick(url) {
+    //     console.log("go to resturant");
+    //     // open resturant page
+    // }
 
-    handleRateSubmit = async(value) => {
-        const rate = this.postRate(value)
+    handleRateSubmit = async(userId, businessId, value) => {
+        console.log(userId + " " + businessId+ " " + value)
+        const rate = this.postRate(userId, businessId, value)
         .then(response => {
             if (response.data.user_id) {
                 console.log(response.data.user_id)
@@ -27,13 +36,13 @@ class RatingBlock extends React.Component {
         })
     }
 
-    postRate = (value) => {
+    postRate = (userId, businessId, value) => {
         try {
             return axios.post('http://localhost:5000/write', {
-                user_id: "tes",
+                user_id: userId,
                 stars: value,
                 text: "",
-                business_id: "oeW0vIYd3rUnAPgmD4fEFg"
+                business_id: businessId
 
             })
         } catch (error) {
@@ -78,7 +87,6 @@ class RatingBlock extends React.Component {
     render() {
         const name = this.props.name;
         const genre = this.props.genre;
-        const url = this.props.url;
         const { value } = this.state;
         return (
             <div className = "rating-container">
