@@ -20,8 +20,18 @@ class Questionary extends Component {
         }
     }
 
-    // handleSubmit = () => {
-        
+    // handleRateSubmit = (value) => {
+    //     console.log(value)
+    //     // fetch("url",
+    //     // {
+    //     //     method: "POST",
+    //     //     cache: "no-cache",
+    //     //     headers: {
+    //     //         "content_type": "application/json"
+    //     //     },
+    //     //     body: JSON.stringify(value)
+    //     // })
+    //     // .them(response => response.json())
     // }
     // handleClick = () => {
     //     this.setState({

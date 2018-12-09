@@ -2,20 +2,56 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './ratingBlock.css';
 import { Rate } from 'antd';
+import axios from 'axios';
 
 
 class RatingBlock extends React.Component {
     state = {
         value: 0,
     }
-    handleChange = (value) => {
+    handleChange = (value, props) => {
         this.setState({ value });
+        this.handleRateSubmit(value)
     }
     handleClick(url) {
         console.log("go to resturant");
         // open resturant page
     }
 
+    handleRateSubmit = async(value) => {
+        const rate = this.postRate(value)
+        .then(response => {
+            if (response.data.user_id) {
+                console.log(response.data.user_id)
+            }
+        })
+    }
+
+    postRate = (value) => {
+        try {
+            return axios.post('http://localhost:5000/write', {
+                user_id: "tes",
+                stars: value,
+                text: "",
+                business_id: "oeW0vIYd3rUnAPgmD4fEFg"
+
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    // handleRateSubmit = (value) => {
+        // fetch("url",
+        // {
+        //     method: "POST",
+        //     cache: "no-cache",
+        //     headers: {
+        //         "content_type": "application/json"
+        //     },
+        //     body: JSON.stringify(value)
+        // })
+        // .them(response => response.json())
+    // }
     // componentDidMount() {
     //     fetch("https://api.example.com/items")
     //       .then(res => res.json())
