@@ -4,18 +4,38 @@ import './Recom.css';
 import { List, Icon } from 'antd';
 import { Rate } from 'antd';
 import ModalForm from '../../component/ModalForm/ModalForm';
+import Axios from 'axios';
 
 class Recommend extends Component {
     constructor(props) {
         super(props)
         this.state = {
             visible: false,
+            userId: "test",
         }
     }
  handleClick = () => {
         this.setState({
             visible: true,
         });
+    }
+    requestRecom = async() => {
+        const recom = this.getRecom(this.state.userId)
+        .then(response => {
+            if (response) {
+                console.log(response)
+            }
+        })
+    }
+    getRecom = (userId) => {
+        try {
+            return Axios.get("http://localhost:5000/recommend/" + userId)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    componentDidMount() {
+        this.requestRecom();
     }
     render() {
         const datas = [
