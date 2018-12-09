@@ -10,18 +10,65 @@ import Axios from 'axios';
 const Search = Input.Search;
 
 class SearchList extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            datas: this.props.data,
+            // value: '',
+            // isSearched: false
+            // url: ''
+        }
+    }
+    
+    // randomPic = () => {
+    //     const urls = [
+    //         "B1CAL1HGshZmpA9HL82VWg",
+    //         "UD9AvYQqqC4DJ4lTGyjkgA",
+    //         "P4TL9jPp9tgdJGsGi_8LIQ",
+    //         "eF9AbWrWOTSSXC1hKq6Zyw",
+    //         "W0HcUNsopA2QzJTLL_4xuw",
+    //         "J-EIRLBPVURT7ciK15SlXw",
+    //         "qDE3J6PyrLC-gJZ0tMYUog",
+    //         "KqZ4dhrwLGmq4O6PGTE4Cw",
+    //         "CK1bpRSgCA18LTzs4TPVug",
+    //         "0lA7_moO0ig0gWmyigjEIw",
+    //         "mSe8JQnwTRxs7GlKQ0FofQ",
+    //         "4YcuX-nHSH9auP54lKenIg",
+    //         "MKc-TJn7qZAK_VcenXrMEg",
+    //         "02aM-HepNBXrchnJCnnqfQ",
+    //         "VGHHcnoAHZl6oe18_gtsKQ",
+    //         "rVki2wsO7ODHLuaVqU-lZA",
+    //         "RlUPp-gM5soOAN5X1iBjtw",
+    //         "PjdvYRdw2l9LxHONrry_yg",
+    //         "0fHFgHFBRMumimTBjy1Sbg"
+    //     ]
+    //     return urls[0]
+    // }
+
     render() {
-        const datas = this.props.data;
+        const { datas } = this.state;
         const listData = [];
+        let n = 1;
         datas.map((data) => {
+            //not working until
+            // const src = this.getPic(data.business_id).then(function(url) {
+            //     console.log("url:" + url)
+            //     return url;
+            // }
+            // )
+            // console.log("src" + src)
+            // const src = this.randomPic();
+            // console.log("src" + src)
+            //until here
             listData.push({
                 href: "",
                 title: data.name,
-                src: "",
+                src: require(('../../assest/res' + n + '.jpg')),
                 description: data.categories,
                 content: "",
                 rating: data.stars
-            })      
+            })     
+            n ++
         });
     
         return (
@@ -85,7 +132,7 @@ class Recommend extends Component {
         const rate = this.getSearch(value, userId)
         .then(response => {
             if (response.data) {
-                // console.log(response.data.result)
+                console.log(response.data.result)
                 this.setState({
                     isSearched: true,
                     data: response.data.result
