@@ -12,6 +12,7 @@ class Recommend extends Component {
         this.state = {
             visible: false,
             userId: "test",
+            data:[]
         }
     }
  handleClick = () => {
@@ -19,14 +20,19 @@ class Recommend extends Component {
             visible: true,
         });
     }
+    //request data and set state, userId?
     requestRecom = async() => {
         const recom = this.getRecom(this.state.userId)
         .then(response => {
             if (response) {
-                console.log(response)
+                this.setState({
+                    data: response.data
+                })
             }
         })
     }
+
+    //request data 
     getRecom = (userId) => {
         try {
             return Axios.get("http://localhost:5000/recommend/" + userId)
@@ -124,6 +130,18 @@ class Recommend extends Component {
                 rating: data.rating
             })      
             }
+
+            //map data to listData
+            // this.state.data.map((data) => {
+            //     listData.push({
+            //         href: data.href,
+            //         title: data.title,
+            //         src: data.src,
+            //         description: data.description,
+            //         content: data.content,
+            //         rating: data.rating
+            //     })      
+            //     }
         );
 
         const IconText = ({ type, text }) => (
