@@ -16,12 +16,15 @@ class FormModal extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: 5,
+            value: 0,
             name: this.props.name,
             cate: this.props.cate,
             business_id: this.props.business_id,
             user_id:"Yimeng"
         }
+    }
+    handleChange = (value) => {
+        this.setState({ value });
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -77,7 +80,7 @@ class FormModal extends React.Component {
                 },
             },
         };
-
+        const { value } = this.state
 
         return (
             <Form onSubmit={this.handleSubmit}>
@@ -104,6 +107,9 @@ class FormModal extends React.Component {
                         <Checkbox>I have read the <a href="">agreement</a></Checkbox>
                     )}
                 </FormItem> */}
+                <FormItem {...tailFormItemLayout}>
+                <Rate onChange={this.handleChange} value={value} />
+                </FormItem>
                 <FormItem {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
                         Submit Review

@@ -31,7 +31,8 @@ class SearchList extends Component {
                 src: require(('../../assest/res' + n + '.jpg')),
                 description: data.categories,
                 content: "",
-                rating: data.stars
+                rating: data.stars,
+                business_id: data.business_id
             })     
             n ++
         });
@@ -74,6 +75,7 @@ class SearchList extends Component {
                         business_id = {item.business_id}></ModalForm>
                         </List.Item>
                     )}
+                    
                 />
             </div>
         )

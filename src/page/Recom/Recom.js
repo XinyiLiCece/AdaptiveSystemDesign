@@ -26,9 +26,9 @@ class Recommend extends Component {
         .then(response => {
             if (response) {
                 console.log("h:" + response.data)
-                // this.setState({
-                //     data: response.data
-                // })
+                this.setState({
+                    data: response.data.result
+                })
             }
         })
     }
@@ -41,8 +41,13 @@ class Recommend extends Component {
             console.log(error)
         }
     }
-    componentDidMount() {
+    componentWillMount() {
         this.requestRecom();
+        // this.state.data.map((data) => {
+        //     listData.push({
+        //         name:data.name
+        //     })      
+        //     });
     }
     render() {
         const datas = [
@@ -125,30 +130,32 @@ class Recommend extends Component {
         ];
 
         const listData = [];
-         datas.map((data) => {
-            listData.push({
-                href: data.href,
-                title: data.title,
-                src: data.src,
-                description: data.description,
-                content: data.content,
-                rating: data.rating,
-                bId: data.bId
-            })      
-            }
+        //  datas.map((data) => {
+        //     listData.push({
+        //         href: data.href,
+        //         title: data.title,
+        //         src: data.src,
+        //         description: data.description,
+        //         content: data.content,
+        //         rating: data.rating,
+        //         bId: data.bId
+        //     })      
+        //     }
 
             // map data to listData
+
             // this.state.data.map((data) => {
             //     listData.push({
-            //         href: data.href,
-            //         title: data.title,
-            //         src: data.src,
-            //         description: data.description,
-            //         content: data.content,
-            //         rating: data.rating
+            //         name:data.name
             //     })      
             //     }
-        );
+        // );
+        const { data } = this.state;
+        data.map((data) => {
+            listData.push({
+                title:data.name
+            })      
+            })
 
         const IconText = ({ type, text }) => (
             <span>
