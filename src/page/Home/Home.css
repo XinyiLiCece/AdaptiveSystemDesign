@@ -1,4 +1,10 @@
-.contanier-home {
-    width: 70%;
+li.listMenu {
+    display: inline-block;
+    width: 30%;
+    margin: 0px 10px;   
+}
+
+ul.ulMenu {
+    width: 80%;
     margin: auto;
 }

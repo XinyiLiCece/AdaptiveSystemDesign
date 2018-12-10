@@ -36,7 +36,7 @@ class ModalForm extends React.Component {
     
       render() {
         const { name, cate, business_id } = this.state
-        console.log(this.state)
+        // console.log(this.state)
         // console.log(name)
         // console.log(cate)
         return (

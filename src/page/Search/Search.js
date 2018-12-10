@@ -5,7 +5,7 @@ import { List, Icon } from 'antd';
 import { Input } from 'antd';
 import { Rate} from 'antd';
 import ModalForm from '../../component/ModalForm/ModalForm';
-import Axios from 'axios';
+import axios from 'axios';
 
 const Search = Input.Search;
 
@@ -15,34 +15,6 @@ const IconText = ({ onClick, type, text }) => (
       {text}
     </span>
   );
-// class IconText extends Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             bId: props.bId,
-//             name: props.name,
-//             type: props.type,
-//             text: props.text 
-//             // value: '',
-//             // isSearched: false
-//             // url: ''
-//         }
-//     }
-//     clickLike = () => {
-//         console.log(this.state.name)
-//     }
-//     render() {
-//         const { text } = this.state
-//         return (
-//             <div>
-//               <span>
-//       <Icon onClick = {this.clickLike} style={{ marginRight: 8 }} />
-//       {text}
-//     </span>  
-//             </div>
-//         )
-//     }
-// }
 class SearchList extends Component {
     constructor(props) {
         super(props)
@@ -56,8 +28,32 @@ class SearchList extends Component {
     handleLike = (name, bId) => {
         console.log(name + bId)
         console.log('liked')
+        console.log(this.state.datas)
+        this.handleLikeSubmit(bId, 'Yimeng')
         // console.log(this.state.data.title)
     }
+
+    handleLikeSubmit = async(bId, uName) => {
+        const like = this.postLike(bId, uName)
+        .then(response => {
+            if (response) {
+                console.log(response)
+            }
+        })
+    } 
+
+    postLike = (bId, uName) => {
+        try {
+            return axios.post('http://localhost:5000/like', {
+                "user_id": uName,
+                "business_id": bId
+
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     render() {
         const { datas } = this.state;
         const listData = [];
@@ -70,7 +66,8 @@ class SearchList extends Component {
                 description: data.categories,
                 content: "",
                 rating: data.stars,
-                business_id: data.business_id
+                business_id: data.business_id,
+                score: data.score
             })     
             n ++
         });
@@ -83,7 +80,7 @@ class SearchList extends Component {
                     size="large"
                     pagination={{
                         onChange: (page) => {
-                            console.log(page);
+                            // console.log(page);
                         },
                         pageSize: 8,
                     }}
@@ -100,8 +97,9 @@ class SearchList extends Component {
                                 title={<a href={item.href}>{item.title}</a>}
                                 description={item.description}
                             />
+                            <div>{item.score}</div>
                             <IconText 
-                            onClick={() => this.handleLike(item.title, item.bId)}
+                            onClick={() => this.handleLike(item.title, item.business_id)}
                             name = {item.title} bId = {item.business_id} type="like-o" text="Thumb up to like this result" />
                             {item.content}
                             <div><Rate disabled defaultValue={item.rating} /></div>
@@ -145,7 +143,7 @@ class SearchPage extends Component {
         .then(response => {
             if (response.data) {
                 console.log('response')
-                console.log(response.data.result)
+                // console.log(response.data.result)
                 this.setState({
                     isSearched: true,
                     data: response.data.result.slice(0,10)
@@ -157,7 +155,7 @@ class SearchPage extends Component {
 
     getSearch = (value, userId) => {
         try {                 
-            return Axios.get("http://localhost:5000/adaptivesearch/" + value + "/" + "Yimeng")
+            return axios.get("http://localhost:5000/adaptivesearch/" + value + "/" + "Yimeng")
         } catch (error) {
             console.log(error)
         }

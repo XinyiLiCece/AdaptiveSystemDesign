@@ -38,14 +38,14 @@ handleFinishRegister = () => {
             <Router>
 
                 <div>
-                    <ul>
-                        <li>
+                    <ul className = 'ulMenu'>
+                        <li className = 'listMenu'>
                             <Link to="/regis">Register</Link>
                         </li>
-                        <li>
+                        <li className = 'listMenu'>
                             <Link to="/recom">Recommend</Link>
                         </li>
-                        <li>
+                        <li className = 'listMenu'>
                             <Link to="/search">Search</Link>
                         </li>
                     </ul>
