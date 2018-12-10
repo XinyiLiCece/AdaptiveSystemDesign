@@ -49,9 +49,9 @@ handleFinishRegister = () => {
                             <Link to="/search">Search</Link>
                         </li>
                     </ul>
-                <Route path = '/regis' component = {Welcome} /> 
-            <Route path = '/Recom' component = {Recommend} /> 
-                <Route path = '/search' component = {Search} /> 
+                <Route className = 'contanier-home' path = '/regis' component = {Welcome} /> 
+            <Route className = 'contanier-home' path = '/Recom' component = {Recommend} /> 
+                <Route className = 'contanier-home' path = '/search' component = {Search} /> 
                     {/* <Welcome></Welcome> */}
                     {/* <SignUpPage></SignUpPage>  */}
                     {/* <Route path = '/Recom' component = {Recommend} /> */}

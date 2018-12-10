@@ -3,12 +3,46 @@ import ReactDOM from 'react-dom';
 import './Search.css';
 import { List, Icon } from 'antd';
 import { Input } from 'antd';
-import { Rate } from 'antd';
+import { Rate} from 'antd';
 import ModalForm from '../../component/ModalForm/ModalForm';
 import Axios from 'axios';
 
 const Search = Input.Search;
 
+const IconText = ({ onClick, type, text }) => (
+    <span>
+      <Icon onClick = {onClick} type={type} style={{ marginRight: 8 }} />
+      {text}
+    </span>
+  );
+// class IconText extends Component {
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             bId: props.bId,
+//             name: props.name,
+//             type: props.type,
+//             text: props.text 
+//             // value: '',
+//             // isSearched: false
+//             // url: ''
+//         }
+//     }
+//     clickLike = () => {
+//         console.log(this.state.name)
+//     }
+//     render() {
+//         const { text } = this.state
+//         return (
+//             <div>
+//               <span>
+//       <Icon onClick = {this.clickLike} style={{ marginRight: 8 }} />
+//       {text}
+//     </span>  
+//             </div>
+//         )
+//     }
+// }
 class SearchList extends Component {
     constructor(props) {
         super(props)
@@ -19,7 +53,11 @@ class SearchList extends Component {
             // url: ''
         }
     }
-
+    handleLike = (name, bId) => {
+        console.log(name + bId)
+        console.log('liked')
+        // console.log(this.state.data.title)
+    }
     render() {
         const { datas } = this.state;
         const listData = [];
@@ -40,6 +78,7 @@ class SearchList extends Component {
         return (
             <div>
                 <List
+                    className = 'search-list'
                     itemLayout="vertical"
                     size="large"
                     pagination={{
@@ -61,6 +100,9 @@ class SearchList extends Component {
                                 title={<a href={item.href}>{item.title}</a>}
                                 description={item.description}
                             />
+                            <IconText 
+                            onClick={() => this.handleLike(item.title, item.bId)}
+                            name = {item.title} bId = {item.business_id} type="like-o" text="Thumb up to like this result" />
                             {item.content}
                             <div><Rate disabled defaultValue={item.rating} /></div>
                             {/* <Modal 
@@ -82,7 +124,7 @@ class SearchList extends Component {
     }
 }
 
-class Recommend extends Component {
+class SearchPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -102,10 +144,11 @@ class Recommend extends Component {
         const rate = this.getSearch(value, userId)
         .then(response => {
             if (response.data) {
+                console.log('response')
                 console.log(response.data.result)
                 this.setState({
                     isSearched: true,
-                    data: response.data.result
+                    data: response.data.result.slice(0,10)
                 })
             }
         })
@@ -136,5 +179,5 @@ class Recommend extends Component {
             </div>)
     };
 };
-export default Recommend;
+export default SearchPage;
 

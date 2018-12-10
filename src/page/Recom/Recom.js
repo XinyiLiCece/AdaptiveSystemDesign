@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './Recom.css';
-import { List, Icon } from 'antd';
+import { List, Icon, Avatar} from 'antd';
 import { Rate } from 'antd';
 import ModalForm from '../../component/ModalForm/ModalForm';
 import Axios from 'axios';
+import ava from './ava.jpg'
 
 class Recommend extends Component {
     constructor(props) {
@@ -12,25 +13,25 @@ class Recommend extends Component {
         this.state = {
             visible: false,
             userId: "Yimeng",
-            data:[]
+            data: []
         }
     }
- handleClick = () => {
+    handleClick = () => {
         this.setState({
             visible: true,
         });
     }
     //request data and set state, userId?
-    requestRecom = async() => {
+    requestRecom = async () => {
         const recom = this.getRecom(this.state.userId)
-        .then(response => {
-            if (response) {
-                console.log("h:" + response.data)
-                this.setState({
-                    data: response.data.result
-                })
-            }
-        })
+            .then(response => {
+                if (response) {
+                    console.log("h:" + response.data)
+                    this.setState({
+                        data: response.data.result
+                    })
+                }
+            })
     }
 
     //request data 
@@ -142,20 +143,20 @@ class Recommend extends Component {
         //     })      
         //     }
 
-            // map data to listData
+        // map data to listData
 
-            // this.state.data.map((data) => {
-            //     listData.push({
-            //         name:data.name
-            //     })      
-            //     }
+        // this.state.data.map((data) => {
+        //     listData.push({
+        //         name:data.name
+        //     })      
+        //     }
         // );
         const { data } = this.state;
         data.map((data) => {
             listData.push({
-                title:data.name
-            })      
+                title: data.name
             })
+        })
 
         const IconText = ({ type, text }) => (
             <span>
@@ -165,7 +166,7 @@ class Recommend extends Component {
         );
         return (
             <div>
-                <List
+                <List className = 'recom-list'
                     itemLayout="vertical"
                     size="large"
                     pagination={{
@@ -175,30 +176,29 @@ class Recommend extends Component {
                         pageSize: 8,
                     }}
                     dataSource={listData}
-                    footer={<div><b>ant design</b> footer part</div>}
+                    // footer={<div><b>ant design</b> footer part</div>}
                     renderItem={item => (
                         <List.Item
                             key={item.title}
                             // actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
-                            extra={<img width={272} alt="logo" src={item.src} />}
+                            // extra={<img width={272} alt="logo" src={item.src} />}
                         >
                             <List.Item.Meta
-                                // avatar={<Avatar src={item.avatar} />}
+                                avatar={<Avatar src={ava} />}
                                 title={<a href={item.href}>{item.title}</a>}
-                                description={item.description}
+                                // description={item.description}
                             />
                             {item.content}
-                            <div><Rate disabled defaultValue={item.rating} /></div>
                             {/* <Modal 
                       title = 'Rate Me'
                       visible = {this.state.visible}
                       onClick={() => this.handleClick()}
                       onCancel = {() => this.setState({visible: false})}
                     ></Modal>  */}
-                    <ModalForm 
-                    name = {item.title}
-                    cate = {item.description}
-                    business_id = {item.bId}></ModalForm>
+                            <ModalForm
+                                name={item.title}
+                                cate={item.description}
+                                business_id={item.bId}></ModalForm>
                         </List.Item>
                     )}
                 />,
@@ -208,7 +208,7 @@ class Recommend extends Component {
 };
 export default Recommend;
 
- 
+
 // import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 // import './Recom.css';
@@ -403,4 +403,3 @@ export default Recommend;
 // };
 // export default Recommend;
 
- 

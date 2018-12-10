@@ -38,7 +38,7 @@ class RegistrationForm extends React.Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 if (this.handleFormSubmit(values)) {
-                    console.log("submit");
+                    console.log(values);
                     this.props.history.push('/question');
                 }
             }
@@ -49,7 +49,7 @@ class RegistrationForm extends React.Component {
         // console.log('Received values of form: ', values)
         try {
             return axios.post('http://localhost:5000/register', {
-                "name": values.name,
+                "name": values.email,
                 // stars: value,
                 // text: "",
                 "select-multiple": values.selectMultiple,
