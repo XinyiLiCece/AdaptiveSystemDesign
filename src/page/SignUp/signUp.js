@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './signUp.css';
 import Questionary from '../Questionary/Questionary';
 import { BrowserRouter as Router, Route, Redirect, Link, withRouter } from "react-router-dom";
+import axios from 'axios';
 
 // import Input from '../../component/input/Input';
 import 'antd/dist/antd.css';
@@ -45,8 +46,18 @@ class RegistrationForm extends React.Component {
     }
 
     handleFormSubmit = async (values) => {
-        console.log('Received values of form: ', values)
-        return true;
+        // console.log('Received values of form: ', values)
+        try {
+            return axios.post('http://localhost:5000/register', {
+                "name": values.name,
+                // stars: value,
+                // text: "",
+                "select-multiple": values.selectMultiple,
+
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     handleConfirmBlur = (e) => {
@@ -106,14 +117,14 @@ class RegistrationForm extends React.Component {
             <Form onSubmit={this.handleSubmit}>
                 <FormItem
                     {...formItemLayout}
-                    label="E-mail"
+                    label="Name"
                 >
                     {getFieldDecorator('email', {
-                        rules: [{
-                            type: 'email', message: 'The input is not valid E-mail!',
-                        }, {
-                            required: true, message: 'Please input your E-mail!',
-                        }],
+                        // rules: [{
+                        //     type: 'email', message: 'The input is not valid E-mail!',
+                        // }, {
+                        //     required: true, message: 'Please input your E-mail!',
+                        // }],
                     })(
                         <Input />
                     )}
@@ -165,7 +176,7 @@ class RegistrationForm extends React.Component {
                     {...formItemLayout}
                     label="What Do you Like"
                 >
-                    {getFieldDecorator('select-multiple', {
+                    {getFieldDecorator('selectMultiple', {
                         rules: [
                             { required: true, message: 'Tell Us Your Fav Food!', type: 'array' },
                         ],

@@ -39,10 +39,10 @@ class RatingBlock extends React.Component {
     postRate = (userId, businessId, value) => {
         try {
             return axios.post('http://localhost:5000/write', {
-                user_id: userId,
-                stars: value,
-                text: "",
-                business_id: businessId
+                "user_id": "Yimeng",
+                "stars": value,
+                "text": "",
+                "business_id": businessId
 
             })
         } catch (error) {

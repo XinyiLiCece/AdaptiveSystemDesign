@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom'
 
 const SignUpBtn = withRouter(({ history }) => (
     <div>
-        <Button
+        <Button 
             type='button'
             onClick={() => {
                 console.log(history)
@@ -18,7 +18,7 @@ const SignUpBtn = withRouter(({ history }) => (
             }
             }
         >
-            Click Me To Sign Up!
+            New? Click Me To Sign Up!
     </Button>
         <Route path="/signup" component={SignUpPage} />
     </div>
@@ -42,7 +42,7 @@ class Welcome extends React.Component {
                     <h1>Welcome to the resturant recommender!</h1>
                     <SignUpBtn disabled={this.state.disabled3}>Sign Up
                 </SignUpBtn>
-                    <Button disabled={this.state.disabled}>Have account? Sign In Here</Button>
+                    <Button disabled={this.state.disabled}>Got account? Sign In Here</Button>
                     {/* <Route path="/signup" component={SignUpPage} /> */}
                 </div>
             </Router>
