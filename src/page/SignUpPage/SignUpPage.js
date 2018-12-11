@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import RegistrationForm from '../SignUp/signUp';
 import Questionary from '../Questionary/Questionary';
-
+import './SignUpPage.css'
 
 function SignUpPage() {
   // onClick = this.onClick;
   return (
     <Router>
       <div>
-        <ul>
+        <ul className = 'signUpMenu'>
           <li>
             <Link to="/signup">SignUp</Link>
           </li>

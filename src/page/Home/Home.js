@@ -40,33 +40,18 @@ handleFinishRegister = () => {
                 <div>
                     <ul className = 'ulMenu'>
                         <li className = 'listMenu'>
-                            <Link to="/regis">Register</Link>
+                            <Link className = 'link-menu' to="/regis">Register</Link>
                         </li>
                         <li className = 'listMenu'>
-                            <Link to="/recom">Recommend</Link>
+                            <Link className = 'link-menu' to="/recom">Recommend</Link>
                         </li>
                         <li className = 'listMenu'>
-                            <Link to="/search">Search</Link>
+                            <Link className = 'link-menu' to="/search">Search</Link>
                         </li>
                     </ul>
                 <Route className = 'contanier-home' path = '/regis' component = {Welcome} /> 
             <Route className = 'contanier-home' path = '/Recom' component = {Recommend} /> 
                 <Route className = 'contanier-home' path = '/search' component = {Search} /> 
-                    {/* <Welcome></Welcome> */}
-                    {/* <SignUpPage></SignUpPage>  */}
-                    {/* <Route path = '/Recom' component = {Recommend} /> */}
-                    {/* <RestuantBlock name = "Lily"
-                    rating = "3.4"
-                     genre = "Chinese"
-                     url = "http">
-             </RestuantBlock>
-            <Questionary></Questionary> */}
-                    {/* <Recommend></Recommend> */}
-                    {/* <WrappedSignUp></WrappedSignUp>
-             <Input></Input>
-             <RegistrationForm></RegistrationForm>
-             <SignUpPage></SignUpPage> 
-              {/* <Route path="/home/recommend" component={Recommend} /> */}
                 </div>
             </Router>
         )

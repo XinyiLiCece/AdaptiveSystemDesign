@@ -2,3 +2,35 @@
     width: 70%;
     margin: auto;
 }
+
+.searchBar {
+    width: 70%;
+    margin: auto;
+    padding-top: 3%
+}
+
+.searchListContainer {
+    padding-top: 3%
+}
+
+.ant-modal-body {
+    padding: 40px;
+}
+.ant-row.ant-form-item {
+    margin-bottom: 10px;
+}
+
+form.ant-form.ant-form-horizontal {
+    margin-left: -120px;
+}
+.searchScore {
+    font-size:11px
+}
+
+.searchRate {
+    padding-bottom: 2%
+}
+
+.likeTxt {
+    color: green
+}

@@ -6,10 +6,10 @@ import RegistrationForm from '../SignUp/signUp';
 import { Button } from 'antd';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import { withRouter } from 'react-router-dom'
-
+import './Welcome.css'
 
 const SignUpBtn = withRouter(({ history }) => (
-    <div>
+    <div className = 'signUp-btn'>
         <Button 
             type='button'
             onClick={() => {
@@ -38,11 +38,13 @@ class Welcome extends React.Component {
         const { match, location, history } = this.props;
         return (
             <Router>
-                <div>
-                    <h1>Welcome to the resturant recommender!</h1>
+                <div className = 'welcomeContainer'>
+                    <h1 className = 'welcomeTitle'>Welcome to the resturant recommender!</h1>
+                    <div className = 'btn-container'>
                     <SignUpBtn disabled={this.state.disabled3}>Sign Up
                 </SignUpBtn>
                     <Button disabled={this.state.disabled}>Got account? Sign In Here</Button>
+                    </div>
                     {/* <Route path="/signup" component={SignUpPage} /> */}
                 </div>
             </Router>

@@ -154,7 +154,9 @@ class Recommend extends Component {
         const { data } = this.state;
         data.map((data) => {
             listData.push({
-                title: data.name
+                title: data.name,
+                bId: data.business_id,
+                description: data.address
             })
         })
 
@@ -165,7 +167,7 @@ class Recommend extends Component {
             </span>
         );
         return (
-            <div>
+            <div className = 'recom'>
                 <List className = 'recom-list'
                     itemLayout="vertical"
                     size="large"
@@ -186,7 +188,7 @@ class Recommend extends Component {
                             <List.Item.Meta
                                 avatar={<Avatar src={ava} />}
                                 title={<a href={item.href}>{item.title}</a>}
-                                // description={item.description}
+                                description={item.description}
                             />
                             {item.content}
                             {/* <Modal 

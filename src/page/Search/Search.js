@@ -9,10 +9,10 @@ import axios from 'axios';
 
 const Search = Input.Search;
 
-const IconText = ({ onClick, type, text }) => (
+const IconText = ({ onClick, type, text}) => (
     <span>
       <Icon onClick = {onClick} type={type} style={{ marginRight: 8 }} />
-      {text}
+      <span className = 'likeTxt'>{text}</span>
     </span>
   );
 class SearchList extends Component {
@@ -26,11 +26,12 @@ class SearchList extends Component {
         }
     }
     handleLike = (name, bId) => {
-        console.log(name + bId)
-        console.log('liked')
-        console.log(this.state.datas)
+        // console.log(name + bId)
+        // console.log('liked')
+        // console.log(this.state.datas)
         this.handleLikeSubmit(bId, 'Yimeng')
         // console.log(this.state.data.title)
+        // alert('liked')
     }
 
     handleLikeSubmit = async(bId, uName) => {
@@ -73,7 +74,7 @@ class SearchList extends Component {
         });
     
         return (
-            <div>
+            <div className = 'searchListContainer'>
                 <List
                     className = 'search-list'
                     itemLayout="vertical"
@@ -97,12 +98,12 @@ class SearchList extends Component {
                                 title={<a href={item.href}>{item.title}</a>}
                                 description={item.description}
                             />
-                            <div>{item.score}</div>
+                            <div className = 'searchScore'>Recommendation Score: {item.score}</div>
                             <IconText 
                             onClick={() => this.handleLike(item.title, item.business_id)}
                             name = {item.title} bId = {item.business_id} type="like-o" text="Thumb up to like this result" />
                             {item.content}
-                            <div><Rate disabled defaultValue={item.rating} /></div>
+                            <div className = 'searchRate'><Rate disabled defaultValue={item.rating} /></div>
                             {/* <Modal 
                       title = 'Rate Me'
                       visible = {this.state.visible}
@@ -165,7 +166,7 @@ class SearchPage extends Component {
         const isSearched = this.state.isSearched
         const data = this.state.data
         return (
-            <div>
+            <div className = 'searchBar'>
                 <Search
                     placeholder="input search text"
                     onSearch={this.handleSearch}

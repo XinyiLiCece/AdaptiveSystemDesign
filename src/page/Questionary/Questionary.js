@@ -181,6 +181,7 @@ class Questionary extends Component {
                     {/* <Button type="primary" onClick = {() => this.props.onClick}> */}
                     <Button type="primary" onClick = {() => {this.handleSubmit()}}>
                     {/* <Link to="/recom">Finish</Link> */}
+                    Finish!
                     </Button>
             </div>)
     };
